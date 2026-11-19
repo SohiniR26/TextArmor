@@ -1,0 +1,70 @@
+{
+  "classification": {
+    "spam_local": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 10,
+      "fn": 10,
+      "accuracy": 50.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "specificity": 100.0,
+      "f1": 0.0
+    },
+    "spam_hybrid": {
+      "tp": 8,
+      "fp": 1,
+      "tn": 9,
+      "fn": 2,
+      "accuracy": 85.0,
+      "precision": 88.89,
+      "recall": 80.0,
+      "specificity": 90.0,
+      "f1": 84.21
+    },
+    "toxicity": {
+      "tp": 9,
+      "fp": 0,
+      "tn": 10,
+      "fn": 1,
+      "accuracy": 95.0,
+      "precision": 100.0,
+      "recall": 90.0,
+      "specificity": 100.0,
+      "f1": 94.74
+    }
+  },
+  "adversarial_robustness": {
+    "total_attacks": 10,
+    "baseline_caught": 3,
+    "textarmor_caught": 10,
+    "baseline_asr": 70.0,
+    "textarmor_asr": 0.0,
+    "recovery_gain": 70.0,
+    "vector_breakdown": {
+      "Character Spacing": {
+        "total": 4,
+        "baseline_caught": 1,
+        "textarmor_caught": 4
+      },
+      "Leetspeak / Glyph": {
+        "total": 2,
+        "baseline_caught": 1,
+        "textarmor_caught": 2
+      },
+      "Mixed Compound": {
+        "total": 4,
+        "baseline_caught": 1,
+        "textarmor_caught": 4
+      }
+    }
+  },
+  "latency_telemetry": {
+    "local_mean": 72.94,
+    "local_median": 69.12,
+    "local_p99": 99.17,
+    "throughput_rps": 13.7,
+    "cloud_mean": 1680.0,
+    "cloud_median": 1620.0
+  }
+}

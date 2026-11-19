@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text Armor Active Shield</title>
+  <style>
+    :root {
+      --cream-bg: #F7F4F0;
+      --card-bg: #FFFFFF;
+      --surface-sunken: #FAF8F5;
+      --border-taupe: #DFD8CD;
+      --espresso: #2C2623;
+      --espresso-muted: #7A7067;
+      --champagne: #C5A880;
+      --champagne-hover: #B59468;
+      --safe-text: #2D5F45;
+      --safe-bg: #EBF2ED;
+      --safe-border: #C4D8CB;
+      --review-text: #8F6423;
+      --review-bg: #FAF3E6;
+      --review-border: #EBDABA;
+      --restrict-text: #8C3B3B;
+      --restrict-bg: #F9EBEB;
+      --restrict-border: #E8C9C9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      width: 360px;
+      background: var(--cream-bg);
+      color: var(--espresso);
+      padding: 16px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-taupe);
+      margin-bottom: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .shield-icon {
+      width: 26px;
+      height: 26px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-taupe);
+      box-shadow: 0 2px 6px rgba(44, 38, 35, 0.05);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--champagne);
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .brand-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--espresso);
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    .brand-sub {
+      font-size: 10px;
+      color: var(--espresso-muted);
+    }
+
+    /* Toggle Switch */
+    .switch-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 36px;
+      height: 20px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: var(--surface-sunken);
+      border: 1px solid var(--border-taupe);
+      transition: .3s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 2px;
+      bottom: 2px;
+      background-color: var(--border-taupe);
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--champagne);
+      border-color: var(--champagne);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(16px);
+      background-color: #FFFFFF;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-taupe);
+      box-shadow: 0 2px 8px rgba(44, 38, 35, 0.03);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--espresso);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--safe-bg);
+      color: var(--safe-text);
+      border: 1px solid var(--safe-border);
+      font-family: monospace;
+      font-weight: 600;
+    }
+
+    /* Interactive Quick Sandbox */
+    textarea {
+      width: 100%;
+      height: 55px;
+      background: var(--surface-sunken);
+      border: 1px solid var(--border-taupe);
+      border-radius: 8px;
+      padding: 8px;
+      color: var(--espresso);
+      font-size: 11px;
+      font-family: monospace;
+      resize: none;
+      margin-bottom: 8px;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--champagne);
+      background: #FFFFFF;
+    }
+
+    .btn {
+      width: 100%;
+      background: var(--champagne);
+      color: var(--espresso);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 4px 12px rgba(197, 168, 128, 0.25);
+    }
+
+    .btn:hover {
+      background: var(--champagne-hover);
+    }
+
+    /* Results */
+    .result-box {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-taupe);
+      display: none;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .verdict-tag {
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .score-tag {
+      font-family: monospace;
+      font-size: 11px;
+      color: var(--espresso-muted);
+    }
+
+    .tokens-tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .tag-token {
+      font-size: 9px;
+      font-family: monospace;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--surface-sunken);
+      border: 1px solid var(--border-taupe);
+      color: var(--espresso);
+      font-weight: 600;
+    }
+
+    /* Footer link */
+    .footer {
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    .portal-link {
+      color: var(--espresso-muted);
+      text-decoration: none;
+      font-size: 10px;
+      transition: color 0.2s;
+    }
+
+    .portal-link:hover {
+      color: var(--espresso);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <div class="header">
+    <div class="brand">
+      <div class="shield-icon">🛡</div>
+      <div>
+        <div class="brand-title">TEXT ARMOR</div>
+        <div class="brand-sub">Dual-Mode Shield Suite v2.6</div>
+      </div>
+    </div>
+    <span id="healthBadge" class="status-badge">● Online</span>
+  </div>
+
+  <!-- Dual Mode Gating Switches -->
+  <div class="card" style="padding: 10px 12px; margin-bottom: 12px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <label for="shieldToggle" style="cursor: pointer; user-select: none; flex-grow: 1;">
+        <div style="font-weight: 700; font-size: 11px; color: var(--espresso);">Outbound Active Shield</div>
+        <div style="font-size: 10px; color: var(--espresso-muted);">Intercept & blur fields as you type</div>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="shieldToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-taupe); padding-top: 8px; margin-bottom: 8px;">
+      <label for="readerToggle" style="cursor: pointer; user-select: none; flex-grow: 1;">
+        <div style="font-weight: 700; font-size: 11px; color: var(--espresso);">Inbound Reader Shield</div>
+        <div style="font-size: 10px; color: var(--espresso-muted);">Auto-blur 18+ & toxic page content</div>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="readerToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-taupe); padding-top: 8px;">
+      <label for="strictToggle" style="cursor: pointer; user-select: none; flex-grow: 1;">
+        <div style="font-weight: 700; font-size: 11px; color: var(--restrict-text);">Strict Parental Lock</div>
+        <div style="font-size: 10px; color: var(--espresso-muted);">Disable "[Click to Reveal]" completely</div>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="strictToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div id="syncToast" style="display: none; font-size: 10px; color: var(--safe-text); font-weight: 600; text-align: right; margin-top: 6px; font-family: monospace;">✓ Live mode synced to active tab</div>
+  </div>
+
+  <!-- Telemetry Card -->
+  <div class="card" style="margin-bottom: 12px;">
+    <div class="card-title">
+      <span>System Telemetry</span>
+      <span style="color: var(--safe-text); font-weight: 600; font-family: monospace;">Edge Active</span>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--espresso-muted); font-family: monospace;">
+      <span>Cascading Engine:</span>
+      <span style="color: var(--espresso); font-weight: 600;">BiLSTM + Groq</span>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--espresso-muted); font-family: monospace; margin-top: 4px;">
+      <span>Backend Endpoint:</span>
+      <span style="color: var(--champagne); font-weight: 600;">127.0.0.1:8000</span>
+    </div>
+  </div>
+
+  <!-- Instant Sandbox Screening -->
+  <div class="card">
+    <div class="card-title">Active Field Screening Sandbox</div>
+    <textarea id="sandboxText" placeholder="Test any phrase against the real-time screening engine..."></textarea>
+    <button class="btn" id="btnTest">Screen Content</button>
+
+    <div class="result-box" id="resultBox">
+      <div class="result-header">
+        <span id="verdictText" class="verdict-tag">ALLOW</span>
+        <span id="scoreText" class="score-tag">Risk: 0.0/100</span>
+      </div>
+      <div id="explanationText" style="font-size: 10px; color: var(--espresso-muted); margin-bottom: 4px;"></div>
+      <div class="tokens-tag-cloud" id="tokensCloud"></div>
+    </div>
+  </div>
+
+  <!-- Footer link -->
+  <div class="footer">
+    <a href="http://localhost:5173" target="_blank" class="portal-link">
+      Open Full Enterprise Dashboard ↗
+    </a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

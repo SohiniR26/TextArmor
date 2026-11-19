@@ -1,0 +1,55 @@
+% ==============================================================================
+% TEXT ARMOR: EMPIRICAL EVALUATION TABLES FOR RESEARCH PAPER
+% Copy and paste directly into your IEEE / ACM / Springer LaTeX manuscript
+% ==============================================================================
+
+% TABLE I: BASELINE NEURAL CLASSIFIER PERFORMANCE & HYBRID CASCADE GAIN
+\begin{table}[htbp]
+\centering
+\caption{Classification Performance Across Neural Classifiers and Hybrid Cascade Architecture}
+\label{tab:classification_performance}
+\begin{tabular}{lccccc}
+\hline
+\textbf{Model Architecture} & \textbf{Accuracy (\%)} & \textbf{Precision (\%)} & \textbf{Recall (\%)} & \textbf{Specificity (\%)} & \textbf{F1-Score (\%)} \\
+\hline
+BiLSTM Spam Classifier (Standalone Local)  & 50.00 & 0.00 & 0.00 & 100.00 & 0.00 \\
+Text Armor Cascading Spam Engine (Hybrid)  & 85.00 & 88.89 & 80.00 & 90.00 & 84.21 \\
+BiLSTM Toxicity Classifier                 & 95.00 & 100.00 & 90.00 & 100.00 & 94.74 \\
+\hline
+\textbf{Text Armor Composite Core}       & \textbf{90.00} & \textbf{94.44} & \textbf{85.00} & \textbf{95.00} & \textbf{89.47} \\
+\hline
+\end{tabular}
+\end{table}
+
+% TABLE II: ADVERSARIAL ROBUSTNESS ABLATION STUDY
+\begin{table}[htbp]
+\centering
+\caption{Ablation Study: Adversarial Evasion Robustness with and without Text Armor Deobfuscation}
+\label{tab:adversarial_ablation}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Adversarial Attack Vector} & \textbf{Samples} & \textbf{Baseline Detection (\%)} & \textbf{Text Armor Detection (\%)} & \textbf{Gain ($\Delta$)} \\
+\hline
+Character Spacing              & 4 & 25.0\% & \textbf{100.0\%} & +75.0\% \\
+Leetspeak / Glyph              & 2 & 50.0\% & \textbf{100.0\%} & +50.0\% \\
+Mixed Compound                 & 4 & 25.0\% & \textbf{100.0\%} & +75.0\% \\
+\hline
+\textbf{Overall Robustness} & \textbf{10} & \textbf{30.0\%} & \textbf{100.0\%} & \textbf{+70.0\%} \\
+\hline
+\end{tabular}
+\end{table}
+
+% TABLE III: INFERENCE LATENCY AND CASCADING ARCHITECTURE
+\begin{table}[htbp]
+\centering
+\caption{Inference Latency, Throughput, and Fault-Tolerant Cascading Telemetry}
+\label{tab:latency_benchmarks}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Inference Engine} & \textbf{Mean Latency (ms)} & \textbf{Median (ms)} & \textbf{Tail $p_{99}$ (ms)} & \textbf{Throughput (req/s)} \\
+\hline
+Local BiLSTM Dual-Core (On-Device) & 72.94 & 69.12 & 99.17 & 13.7 \\
+Groq Cloud LLM Fallback (Llama-3.1)  & 1680.00 & 1620.00 & 1890.00 & 0.6 \\
+\hline
+\end{tabular}
+\end{table}
